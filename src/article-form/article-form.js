@@ -25,6 +25,7 @@ export default function ArticleForm({ status = 'new', slug }) {
   })
 
   const article = useSelector((state) => state.articles.singleArticle)
+  console.log(article)
 
   const dispatch = useDispatch()
 
@@ -43,10 +44,10 @@ export default function ArticleForm({ status = 'new', slug }) {
     clearErrors()
     reset()
     if (status === 'edit') {
-      dispatch(getSingleArticle(slug))
+      dispatch(getSingleArticle({ slug, token: user.user.token }))
     }
     return () => dispatch(clearSingle())
-  }, [status, clearErrors, reset, dispatch, slug])
+  }, [status, clearErrors, reset, dispatch, slug, user.user.token])
 
   useEffect(() => {
     if (status === 'edit') {
