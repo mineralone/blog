@@ -1,0 +1,131 @@
+@import '../variables.scss';
+
+.app {
+  background-color: #ebeef3;
+  width: 100%;
+  display: block;
+  min-height: 100vh;
+
+  &__content {
+    max-width: 950px;
+    margin: 25px auto;
+    padding-bottom: 25px;
+  }
+}
+
+.header {
+  font-family: $fontFamilyInter;
+  background-color: white;
+  height: 90px;
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: 400;
+
+  &__link {
+    color: black;
+    margin-right: 20px;
+  }
+
+  &__link_up {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: $colorGreen;
+    width: 110px;
+    height: 50px;
+    border: 1px solid $colorGreen;
+    border-radius: 5px;
+  }
+
+  &__link_up:hover {
+    border-color: $colorBlue;
+  }
+}
+
+:global {
+  .ant-page-header-heading-title {
+    font-family: $fontFamilyInter;
+    font-size: 18px;
+    line-height: 28px;
+    font-weight: 400;
+  }
+}
+
+.error {
+  font-family: $fontFamilyInter;
+  font-size: 14px;
+  text-align: center;
+}
+
+.spin {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 100;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  margin-left: 13px;
+  margin-right: 13px;
+
+  &__name {
+    font-family: $fontFamilyInter;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 28px;
+    color: rgba(0, 0, 0, 0.85);
+    margin-right: 13px;
+    position: relative;
+    bottom: -3px;
+  }
+}
+
+.create-article-link {
+  width: 112px;
+  height: 31px;
+  border: 1px solid $colorGreen;
+  color: $colorGreen;
+  border-radius: 5px;
+  font-family: $fontFamilyInter;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  padding: 8px;
+  position: relative;
+  top: -3px;
+}
+
+.create-article-link:hover {
+  border-color: $colorBlue;
+  cursor: pointer;
+}
+
+.logout-btn {
+  background-color: inherit;
+  font-family: $fontFamilyInter;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 28px;
+  display: flex;
+  align-items: center;
+  color: rgba(0, 0, 0, 0.75);
+  width: 109px;
+  height: 51px;
+  display: flex;
+  justify-content: center;
+  border: 1px solid rgba(0, 0, 0, 0.75);
+  border-radius: 5px;
+  margin-right: 13px;
+}
+
+.logout-btn:hover {
+  color: $colorRed;
+  cursor: pointer;
+  border-color: $colorRed;
+}

@@ -1,0 +1,57 @@
+@import '../variables.scss';
+
+.article-form {
+  width: 968px;
+
+  .input-form-article-prefix {
+    margin-top: 20px;
+  }
+
+  .text-area {
+    min-height: 168px;
+  }
+
+  .article-form-send {
+    width: 320px;
+  }
+
+  .tags {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-bottom: 5px;
+
+    .tags-input {
+      width: 300px;
+    }
+
+    .tags-btn {
+      width: 120px;
+      background-color: white;
+      margin-left: 20px;
+      border-radius: 4px;
+      font-family: $fontFamilyRoboto;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 13px;
+      line-height: 24px;
+      border: 1px solid;
+    }
+
+    .tags-btn:hover {
+      transform: scale(1.03);
+      transition: transform linear 0.1s;
+      cursor: pointer;
+    }
+
+    .tags-btn-delete {
+      border-color: $colorRed;
+      color: $colorRed;
+    }
+
+    .tags-btn-add {
+      border-color: $colorBlue;
+      color: $colorBlue;
+    }
+  }
+}

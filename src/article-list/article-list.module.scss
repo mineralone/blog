@@ -1,0 +1,9 @@
+.article-list {
+  padding: 0 16px;
+  padding-bottom: 24px;
+
+  &__pagination {
+    display: flex;
+    justify-content: center;
+  }
+}

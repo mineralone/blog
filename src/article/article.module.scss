@@ -1,0 +1,129 @@
+@import '../variables.scss';
+
+.article {
+  position: relative;
+  padding: 0;
+  min-height: 140px;
+  border-radius: 5px;
+  filter: drop-shadow(0px 4px 12px rgba(0, 0, 0, 0.15));
+
+  &__content {
+    max-width: 682px;
+    margin-top: -5px;
+  }
+
+  &__user {
+    position: absolute;
+    top: 20px;
+    right: 15px;
+    flex-flow: row-reverse;
+  }
+
+  &__link {
+    font-family: $fontFamilyInter;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 20px;
+    line-height: 28px;
+    margin-right: 10px;
+  }
+
+  &__tags {
+    margin-top: -8px;
+    margin-bottom: 10px;
+  }
+
+  &__title {
+    display: flex;
+    align-items: center;
+  }
+
+  &__body {
+    margin-top: 25px;
+    color: black;
+    font-family: $fontFamilyInter;
+    font-weight: 400;
+  }
+}
+
+.article-edit {
+  position: absolute;
+  top: 86px;
+  right: 25px;
+
+  &__action {
+    font-family: $fontFamilyInter;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 22px;
+    border: 1px solid;
+    border-radius: 5px;
+    background-color: white;
+  }
+
+  &__action:hover {
+    border-color: $colorBlue;
+    color: $colorBlue;
+    cursor: pointer;
+  }
+
+  &__action_btn {
+    border-color: $colorRed;
+    color: $colorRed;
+    padding: 4px 15px;
+  }
+
+  &__action_link {
+    border-color: $colorGreen;
+    color: $colorGreen;
+    margin-left: 12px;
+    padding: 7px 17px;
+  }
+}
+
+.article_single {
+  min-height: 75vh;
+}
+
+:global {
+  .ant-card-meta-detail {
+    margin-right: 12px;
+    font-family: $fontFamilyInter;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 12px;
+    line-height: 22px;
+  }
+
+  .ant-card-meta-title {
+    margin: 0;
+    color: black;
+    font-size: 18px;
+    line-height: 28px;
+    margin-top: 4px;
+    margin-bottom: -8px;
+  }
+  .ant-card-meta-description {
+    position: relavite;
+    translate: 0px -15px;
+  }
+
+  .anticon-heart {
+    transform: scale(0.9);
+  }
+
+  .ant-typography {
+    font-family: $fontFamilyInter;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 12px;
+    line-height: 22px;
+    display: flex;
+    vertical-align: middle;
+  }
+}
+
+.error-del {
+  margin-top: 40px;
+}

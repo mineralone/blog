@@ -1,0 +1,96 @@
+@import '../variables.scss';
+
+.login-form {
+  display: block;
+  margin: 35px auto;
+  margin-bottom: 20px;
+  width: 400px;
+  border-radius: 6px;
+  border: 1px solid #d9d9d9;
+  box-shadow: 0px 22px 106px rgba(0, 0, 0, 0.07), 0px 9.19107px 44.2843px rgba(0, 0, 0, 0.0503198),
+    0px 4.91399px 23.6765px rgba(0, 0, 0, 0.0417275), 0px 2.75474px 13.2728px rgba(0, 0, 0, 0.035),
+    0px 1.46302px 7.04911px rgba(0, 0, 0, 0.0282725), 0px 0.608796px 2.93329px rgba(0, 0, 0, 0.0196802);
+  background-color: white;
+  padding: 40px 32px;
+  height: auto;
+  position: relative;
+}
+
+.login-form-button {
+  border-radius: 6px;
+  width: 100%;
+  height: 40px;
+  margin-top: 20px;
+}
+
+.sign-title {
+  font-family: $fontFamilyRoboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 28px;
+  text-align: center;
+  color: #262626;
+  width: auto;
+  margin-bottom: 20px;
+}
+
+.sign-form-prefix {
+  font-family: $fontFamilyRoboto;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 22px;
+  color: #262626;
+  margin-top: 8px;
+  margin-bottom: -3px;
+}
+
+.sign-footer {
+  font-family: $fontFamilyRoboto;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 20px;
+  text-align: center;
+  color: #8c8c8c;
+  display: block;
+  margin-top: 5px;
+  margin-bottom: -20px;
+}
+
+:global {
+  .input-red {
+    border: 1px solid $colorRed;
+  }
+
+  .input-red:hover {
+    border-color: $colorRed;
+    box-shadow: 0 0 0 2px rgba(255, 0, 0, 0.2);
+  }
+
+  .input-red:focus {
+    border-color: $colorRed;
+    box-shadow: 0 0 0 2px rgba(255, 0, 0, 0.2);
+  }
+}
+
+.input-error {
+  font-family: $fontFamilyRoboto;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 22px;
+  color: $colorRed;
+  margin: 0;
+  margin-bottom: -5px;
+}
+
+.input-checkbox {
+  font-family: $fontFamilyRoboto;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 22px;
+  color: #595959;
+}
