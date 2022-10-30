@@ -28,8 +28,9 @@ export default function Profile({ status }) {
 
   useEffect(() => {
     clearErrors()
+    dispatch(delError('all'))
     reset()
-  }, [status, clearErrors, reset])
+  }, [status, clearErrors, dispatch, reset])
 
   const onSubmit = (data) => {
     dispatch(delError('all'))

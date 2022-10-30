@@ -25,7 +25,6 @@ export default function ArticleForm({ status = 'new', slug }) {
   })
 
   const article = useSelector((state) => state.articles.singleArticle)
-  console.log(article)
 
   const dispatch = useDispatch()
 
