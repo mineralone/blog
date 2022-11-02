@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link, Route, Switch, BrowserRouter, Redirect } from 'react-router-dom'
+import { Link, Route, Switch, BrowserRouter } from 'react-router-dom'
 import { Layout, PageHeader, Avatar, Spin, Result } from 'antd'
 import { ApiOutlined } from '@ant-design/icons'
 import classNames from 'classnames'
@@ -76,22 +76,10 @@ export default function App() {
         <Switch>
           <Route path="/articles" exact component={ArticleList} />
           <Route path="/articles/:slug" exact render={({ match }) => <ArticlePage slug={match.params.slug} />} />
-          <Route
-            path="/sign-up"
-            render={() => (user.authorization ? <Redirect to="/articles" /> : <Profile status="register" />)}
-          />
-          <Route
-            path="/sign-in"
-            render={() => (user.authorization ? <Redirect to="/articles" /> : <Profile status="login" />)}
-          />
-          <Route
-            path="/profile"
-            render={() => (user.authorization ? <Profile status="edit" /> : <Redirect to="/articles" />)}
-          />
-          <Route
-            path="/new-article"
-            render={() => (user.authorization ? <ArticleForm /> : <Redirect to="/articles" />)}
-          />
+          <Route path="/sign-up" render={() => <Profile status="register" />} />
+          <Route path="/sign-in" render={() => <Profile status="login" />} />
+          <Route path="/profile" render={() => <Profile status="edit" />} />
+          <Route path="/new-article" component={ArticleForm} />
           <Route
             path="/articles/:slug/edit"
             render={({ match }) => <ArticleForm status="edit" slug={match.params.slug} />}

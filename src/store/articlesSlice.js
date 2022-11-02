@@ -29,14 +29,13 @@ const articlesSlice = createSlice({
     totalCount: 0,
     offset: 0,
     currentPage: 1,
+    load: false,
     listArticles: {
       array: [],
-      load: false,
       error: null,
     },
     singleArticle: {
       object: null,
-      load: false,
       error: null,
       status: false,
     },
@@ -50,30 +49,32 @@ const articlesSlice = createSlice({
     clearSingle: (state) => {
       state.singleArticle.object = null
       state.singleArticle.status = false
+      state.load = false
+      state.singleArticle.error = null
     },
   },
   extraReducers: {
     [getArticles.pending]: (state) => {
-      state.listArticles.load = true
+      state.load = true
     },
     [getArticles.rejected]: (state, { payload }) => {
       state.listArticles.error = payload
-      state.listArticles.load = false
+      state.load = false
     },
     [getArticles.fulfilled]: (state, { payload }) => {
       state.listArticles.array = payload.articles
       state.totalCount = payload.articlesCount
-      state.listArticles.load = false
+      state.load = false
     },
     [getSingleArticle.pending]: (state) => {
-      state.singleArticle.load = true
+      state.load = true
     },
     [getSingleArticle.rejected]: (state, { payload }) => {
       state.singleArticle.error = payload
-      state.singleArticle.load = false
+      state.load = false
     },
     [getSingleArticle.fulfilled]: (state, { payload }) => {
-      state.singleArticle.load = false
+      state.load = false
       state.singleArticle.object = payload.article
       state.singleArticle.status = true
     },

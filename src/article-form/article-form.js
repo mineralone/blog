@@ -24,7 +24,9 @@ export default function ArticleForm({ status = 'new', slug }) {
     mode: 'onChange',
   })
 
-  const article = useSelector((state) => state.articles.singleArticle)
+  const articles = useSelector((state) => state.articles)
+
+  const { singleArticle: article } = articles
 
   const dispatch = useDispatch()
 
@@ -46,7 +48,7 @@ export default function ArticleForm({ status = 'new', slug }) {
       dispatch(getSingleArticle({ slug, token: user.user.token }))
     }
     return () => dispatch(clearSingle())
-  }, [status, clearErrors, reset, dispatch, slug, user.user.token])
+  }, [status, clearErrors, reset, dispatch, slug, user])
 
   useEffect(() => {
     if (status === 'edit') {
@@ -59,6 +61,10 @@ export default function ArticleForm({ status = 'new', slug }) {
       })
     }
   }, [setTags, article.object, status])
+
+  useEffect(() => {
+    setCondition((prev) => ({ ...prev, load: articles.load }))
+  }, [articles.load])
 
   const onSubmit = async (data) => {
     const tagList = tags.filter((item) => item.value)
@@ -119,16 +125,22 @@ export default function ArticleForm({ status = 'new', slug }) {
             defaultValue={item.value}
             placeholder="Tag"
             autoFocus={index === tags.length - 1 && tags.length > 1}
+            disabled={condition.load}
           />
           <button
             type="button"
             onClick={() => deleteTag(item.id)}
             className={classNames(styles['tags-btn-delete'], styles['tags-btn'])}
+            disabled={condition.load}
           >
             Delete
           </button>
           {index === tags.length - 1 ? (
-            <button type="submit" className={classNames(styles['tags-btn-add'], styles['tags-btn'])}>
+            <button
+              type="submit"
+              className={classNames(styles['tags-btn-add'], styles['tags-btn'])}
+              disabled={condition.load}
+            >
               Add tag
             </button>
           ) : null}
@@ -166,6 +178,7 @@ export default function ArticleForm({ status = 'new', slug }) {
             type="text"
             autoFocus
             defaultValue={status === 'edit' && article.object !== null ? article.object.title : ''}
+            disabled={condition.load}
           />
           {errors.title && <p className={stylesSign['input-error']}>{errors.title.message}</p>}
 
@@ -178,6 +191,7 @@ export default function ArticleForm({ status = 'new', slug }) {
             placeholder="Title"
             type="text"
             defaultValue={status === 'edit' && article.object !== null ? article.object.description : ''}
+            disabled={condition.load}
           />
           {errors.description && <p className={stylesSign['input-error']}>{errors.description.message}</p>}
 
@@ -189,6 +203,7 @@ export default function ArticleForm({ status = 'new', slug }) {
             className={classNames('ant-input', styles['text-area'], { 'input-red': errors.body })}
             placeholder="Text"
             defaultValue={status === 'edit' && article.object !== null ? article.object.body : ''}
+            disabled={condition.load}
           />
           {errors.body && <p className={stylesSign['input-error']}>{errors.body.message}</p>}
         </form>
@@ -201,6 +216,7 @@ export default function ArticleForm({ status = 'new', slug }) {
           htmlType="submit"
           form="article"
           className={classNames(stylesSign['login-form-button'], styles['article-form-send'])}
+          disabled={condition.load}
         >
           Send
         </Button>

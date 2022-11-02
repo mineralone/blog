@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { nanoid } from 'nanoid'
 
 import Article from '../article'
-import { getArticles, setCurrentPage } from '../store/articlesSlice'
+import { clearSingle, getArticles, setCurrentPage } from '../store/articlesSlice'
 import { falseRedirect } from '../store/userSlice'
 import styleErrOnLoad from '../app/app.module.scss'
 
@@ -26,8 +26,9 @@ export default function ArticleList() {
   }, [user.redirect, dispatch])
 
   useEffect(() => {
+    if (articles.singleArticle.status) dispatch(clearSingle())
     dispatch(getArticles({ offset: articles.offset, token }))
-  }, [dispatch, articles.offset, token])
+  }, [dispatch, articles.offset, token, articles.singleArticle.status])
 
   const articleElements = listArticles.array.length
     ? listArticles.array.map((item, index) => {
@@ -72,5 +73,5 @@ export default function ArticleList() {
     </>
   )
 
-  return listArticles.load ? <Spin size="large" className={styleErrOnLoad.spin} /> : articlesBlock
+  return articles.load ? <Spin size="large" className={styleErrOnLoad.spin} /> : articlesBlock
 }

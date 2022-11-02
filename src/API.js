@@ -62,23 +62,7 @@ export async function userLogin({ email, password }) {
     body: JSON.stringify(body),
   })
   const data = response.json()
-  if (response.ok) {
-    const resObj = await data.then((result) => result)
-    const user = getCurrentUser(resObj.user.token)
-    localStorage.setItem('user', JSON.stringify({ email, password }))
-    return user
-  }
-  return data
-}
-
-export async function getCurrentUser(token) {
-  const response = await fetch(`${baseUrl}/user`, {
-    method: 'GET',
-    headers: {
-      Authorization: `Token ${token}`,
-    },
-  })
-  const data = response.json()
+  if (response.ok) localStorage.setItem('user', JSON.stringify({ email, password }))
   return data
 }
 

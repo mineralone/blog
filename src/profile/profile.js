@@ -58,8 +58,8 @@ export default function Profile({ status }) {
   const textBtnSub = status === 'register' ? 'Create' : status === 'login' ? 'Login' : 'Save'
   const header = status === 'register' ? 'Create new account' : status === 'login' ? 'Sign In' : 'Edit Profile'
 
-  if ((status === 'edit' && !user.authorization) || (status !== 'edit' && user.authorization)) {
-    return <Redirect to="/articles" />
+  if (status === 'edit' && !user.authorization) {
+    return <Redirect to="/sign-in" />
   }
 
   if (!user.redirect || ((status === 'register' || status === 'login') && !user.authorization)) {
@@ -104,6 +104,7 @@ export default function Profile({ status }) {
               type="text"
               defaultValue={status === 'edit' ? user.user.username : ''}
               autoFocus={status === 'register' || status === 'edit'}
+              disabled={user.load}
             />
             {errors.username && <p className={styles['input-error']}>{errors.username.message}</p>}
             {'username' in user.error && !errors.username && (
@@ -129,6 +130,7 @@ export default function Profile({ status }) {
           type="text"
           defaultValue={status === 'edit' ? user.user.email : ''}
           autoFocus={status === 'login'}
+          disabled={user.load}
         />
         {errors.email && <p className={styles['input-error']}>{errors.email.message}</p>}
         {'email' in user.error && !errors.email && <p className={styles['input-error']}>This email is already use</p>}
@@ -152,6 +154,7 @@ export default function Profile({ status }) {
           placeholder={status === 'edit' ? 'New password' : 'Password'}
           defaultValue={status === 'edit' ? JSON.parse(localStorage.getItem('user')).password : null}
           type="password"
+          disabled={user.load}
         />
         {errors.password && <p className={styles['input-error']}>{errors.password.message}</p>}
 
@@ -166,6 +169,7 @@ export default function Profile({ status }) {
               })}
               placeholder="Repeat password"
               type="password"
+              disabled={user.load}
             />
             {errors['password-repeat'] && <p className={styles['input-error']}>{errors['password-repeat'].message}</p>}
           </>
@@ -185,6 +189,7 @@ export default function Profile({ status }) {
               })}
               placeholder="Avatar image"
               type="url"
+              disabled={user.load}
               defaultValue={user.user.image}
             />
             {errors.image && <p className={styles['input-error']}>{errors.image.message}</p>}
@@ -195,13 +200,13 @@ export default function Profile({ status }) {
           <>
             <Divider style={{ margin: '20px 0 5px' }} />
 
-            <Checkbox className={styles['input-checkbox']} required defaultChecked>
+            <Checkbox disabled={user.load} className={styles['input-checkbox']} required defaultChecked>
               I agree to the processing of my personal information
             </Checkbox>
           </>
         ) : null}
 
-        <Button type="primary" htmlType="submit" className={styles['login-form-button']}>
+        <Button type="primary" htmlType="submit" disabled={user.load} className={styles['login-form-button']}>
           {textBtnSub}
         </Button>
 
