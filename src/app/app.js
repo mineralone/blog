@@ -10,7 +10,7 @@ import ArticleList from '../article-list'
 import ArticlePage from '../article-page/article-page'
 import ArticleForm from '../article-form'
 import Profile from '../profile'
-import { loginRegUser, logOut } from '../store/userSlice'
+import { logOut, setUserLocal } from '../store/userSlice'
 
 import noAvatar from './smiley-cyrus.jpg'
 import styles from './app.module.scss'
@@ -23,10 +23,8 @@ export default function App() {
   const [internet, setInternet] = useState(true)
 
   useEffect(() => {
-    if (localStorage.getItem('user') !== null) {
-      const userLog = JSON.parse(localStorage.getItem('user'))
-      userLog.status = 'login'
-      dispatch(loginRegUser(userLog))
+    if (!user.authorization) {
+      dispatch(setUserLocal())
     }
     window.addEventListener('offline', () => {
       setInternet(false)
@@ -34,7 +32,7 @@ export default function App() {
     window.addEventListener('online', () => {
       setInternet(true)
     })
-  }, [dispatch])
+  }, [dispatch, user.authorization])
 
   const noAuthUser = [
     <Link to="/sign-in" className={styles.header__link}>

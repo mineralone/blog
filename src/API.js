@@ -62,7 +62,6 @@ export async function userLogin({ email, password }) {
     body: JSON.stringify(body),
   })
   const data = response.json()
-  if (response.ok) localStorage.setItem('user', JSON.stringify({ email, password }))
   return data
 }
 
@@ -85,7 +84,7 @@ export async function editProfile({ email, password, username, image = null, tok
   })
   const data = response.json()
   if (response.ok) {
-    localStorage.setItem('user', JSON.stringify({ email, password }))
+    localStorage.setItem('user', JSON.stringify({ ...data }))
   }
   return data
 }

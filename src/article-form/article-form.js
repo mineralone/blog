@@ -112,6 +112,11 @@ export default function ArticleForm({ status = 'new', slug }) {
       setErr({ error: 'You cannot delete a single element' })
     }
   }
+  if (status === 'edit' && article.object !== null && user.user.username !== article.object.author.username) {
+    return <Redirect to={`/articles/${slug}`} />
+  }
+
+  if (!user.authorization && !localStorage.getItem('user')) return <Redirect to={`/articles/${slug}`} />
 
   const inputTags = tags.map((item, index) => {
     return (
@@ -149,12 +154,6 @@ export default function ArticleForm({ status = 'new', slug }) {
       </span>
     )
   })
-
-  if (!user.authorization) return <Redirect to="/articles" />
-
-  if (status === 'edit' && article.object !== null && user.user.username !== article.object.author.username) {
-    return <Redirect to={`/articles/${slug}`} />
-  }
 
   if (!condition.completed && (status === 'new' || (status === 'edit' && !article.load))) {
     return (

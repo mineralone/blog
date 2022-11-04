@@ -27,6 +27,14 @@ const userSlice = createSlice({
         state.user = payload.user
         state.authorization = true
         state.redirect = true
+        localStorage.setItem('user', JSON.stringify(payload.user))
+      }
+    },
+    setUserLocal: (state) => {
+      if (localStorage.getItem('user')) {
+        state.user = JSON.parse(localStorage.getItem('user'))
+        state.authorization = true
+        state.redirect = true
       }
     },
     falseRedirect: (state) => {
@@ -58,6 +66,6 @@ const userSlice = createSlice({
   },
 })
 
-export const { delError, setUser, logOut, falseRedirect } = userSlice.actions
+export const { delError, setUser, logOut, falseRedirect, setUserLocal } = userSlice.actions
 
 export default userSlice.reducer
