@@ -26,9 +26,12 @@ export default function ArticleList() {
   }, [user.redirect, dispatch])
 
   useEffect(() => {
-    if (articles.singleArticle.status) dispatch(clearSingle())
     dispatch(getArticles({ offset: articles.offset, token }))
-  }, [dispatch, articles.offset, token, articles.singleArticle.status])
+  }, [dispatch, articles.offset, token])
+
+  useEffect(() => {
+    if (articles.singleArticle.status) dispatch(clearSingle())
+  }, [dispatch, articles.singleArticle.status])
 
   const articleElements = listArticles.array.length
     ? listArticles.array.map((item, index) => {
